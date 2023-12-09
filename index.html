@@ -3,10 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camera Access</title>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
 </head>
 <body>
     <h1>Teachable Machine Model Demo</h1>
+    <h1>Camera Access Demo</h1>
+    <video id="camera" width="640" height="480" autoplay></video>
+
+    <script>
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => {
+                const video = document.getElementById('camera');
+                video.srcObject = stream;
+            })
+            .catch(error => console.error('Error accessing camera:', error));
+    </script>
 
     <script>
         async function loadModel() {
